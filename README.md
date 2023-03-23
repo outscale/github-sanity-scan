@@ -56,7 +56,7 @@ on:
     branches: [ master ]
 
 jobs:
-  cred-scan:
+  github-sanity-scan:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
