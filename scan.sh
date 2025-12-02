@@ -1,22 +1,6 @@
 #!/bin/bash
 set -eu
 
-function test_command {
-    cmd=${*:1}
-    set +e
-    if ! $cmd &> /dev/null; then
-        echo "error: command $cmd not found"
-        exit 1
-    fi
-    set -e
-}
-
-function dependencies_check {
-    test_command grep --help
-    test_command find --help
-    test_command cat --help
-}
-
 function scan_no_pull_request_target {
     local result_path
     result_path=$(mktemp)
