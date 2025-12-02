@@ -1,17 +1,17 @@
 name: Pull Request check
 on:
-  pull_request_target:
-    types:
-      - opened
-    branches:
-      - 'releases/**'
+    pull_request_target:
+        types:
+            - opened
+        branches:
+            - "releases/**"
 
 jobs:
-  scan:
-    runs-on:  ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install shellcheck
-      run: sudo apt-get install -y shellcheck
-    - name: Run tests
-      run: ./tests/tests.sh
+    scan:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+            - name: Install shellcheck
+              run: sudo apt-get install -y shellcheck
+            - name: Run tests
+              run: ./tests/tests.sh
