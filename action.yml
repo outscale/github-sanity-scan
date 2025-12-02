@@ -1,19 +1,21 @@
-name: 'Test Github configuration sanity'
-description: 'Scan Github misconfigurations'
+name: "Test Github configuration sanity"
+description: "Scan Github misconfigurations"
 inputs:
-  no-pull-request-target:
-    required: false
-    default: false
-  project-path:
-    required: false
-    default: "."
+    no-pull-request-target:
+        description: "Enable scanning for pull_request_target usage in workflows"
+        required: false
+        default: "false"
+    project-path:
+        description: "Path to the project directory to scan"
+        required: false
+        default: "."
 runs:
-  using: "composite"
-  steps:
-    - uses: actions/checkout@v2
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash
-    - name: "Scan for pull_request_target in workflows"
-      if: ${{ inputs.no-pull-request-target }}
-      shell: bash
-      run: scan.sh --path ${{ inputs.project-path }} --no-pull-request-target
+    using: "composite"
+    steps:
+        - uses: actions/checkout@v2
+        - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+          shell: bash
+        - name: "Scan for pull_request_target in workflows"
+          if: inputs.no-pull-request-target == 'true'
+          shell: bash
+          run: scan.sh --path ${{ inputs.project-path }} --no-pull-request-target
