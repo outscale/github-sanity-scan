@@ -16,6 +16,6 @@ runs:
         - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
           shell: bash
         - name: "Scan for pull_request_target in workflows"
-          if: inputs.no-pull-request-target == "true"
+          if: inputs.no-pull-request-target == 'true'
           shell: bash
           run: scan.sh --path ${{ inputs.project-path }} --no-pull-request-target
